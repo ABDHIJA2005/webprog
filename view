@@ -3,29 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIT Marketplace</title>
+    <meta name="description" content="VIT Marketplace - Buy and sell items within VIT community">
+    <title>VIT Marketplace - Buy & Sell on Campus</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
+        :root {
+            --primary-color: #8918f2;
+            --primary-hover: #7a0ed6;
+            --secondary-color: #f0f2f5;
+            --text-color: #333;
+            --light-text: #666;
+            --border-color: #ddd;
+            --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Styles */
         .login-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #f0f2f5;
+            background-color: var(--secondary-color);
             padding: 0.5rem 2rem;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
         }
 
         .login-bar-left {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .login-bar-left img {
@@ -33,24 +58,36 @@
             margin-right: 10px;
         }
 
-        .login-bar input, .login-bar button, .login-bar a {
-            margin-left: 1rem;
+        .login-bar input {
             padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
-            background-color: #fff;
+            min-width: 150px;
         }
 
         .login-bar button {
-            background-color: #8918f2;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .login-bar button:hover {
+            background-color: var(--primary-hover);
         }
 
         .login-bar a {
             text-decoration: none;
-            color: #8918f2;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .login-bar a:hover {
+            text-decoration: underline;
         }
 
         .header {
@@ -60,12 +97,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #8918f2;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
         }
@@ -78,43 +118,59 @@
         .user-actions {
             display: flex;
             align-items: center;
+            gap: 1rem;
         }
 
         .sell-button {
-            background-color: #8918f2;
+            background-color: var(--primary-color);
             color: white;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 1.5rem;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-right: 1rem;
             font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .sell-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
         }
 
         .profile-pic {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid var(--primary-color);
         }
 
+        /* Main Content */
         .main-container {
             display: flex;
             padding: 2rem;
             gap: 1.5rem;
+            flex: 1;
         }
 
+        /* Sidebar */
         .sidebar {
-            width: 200px;
+            width: 250px;
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--card-shadow);
             padding: 1.5rem;
+            position: sticky;
+            top: 120px;
+            height: fit-content;
         }
 
         .sidebar h2 {
             font-size: 1.2rem;
             margin-bottom: 1rem;
+            color: var(--primary-color);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .sidebar ul {
@@ -126,13 +182,20 @@
             padding: 0.75rem 1rem;
             cursor: pointer;
             border-radius: 5px;
-            transition: background-color 0.3s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
+            margin-bottom: 0.25rem;
         }
 
         .sidebar li:hover {
-            background-color: #f0f0f0;
+            background-color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .sidebar li.active {
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .sidebar li img {
@@ -143,55 +206,120 @@
             border-radius: 5px;
         }
 
+        /* Product Grid */
         .product-grid {
             flex-grow: 1;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
         }
 
         .product-card {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--card-shadow);
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .product-image-container {
+            position: relative;
+            padding-top: 75%; /* 4:3 aspect ratio */
+            overflow: hidden;
         }
 
         .product-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
         }
 
         .product-details {
             padding: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .product-title {
             font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--text-color);
         }
 
+        .product-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-seller {
+            color: var(--light-text);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        /* Footer */
         .footer {
             text-align: center;
-            padding: 1rem;
+            padding: 1.5rem;
             background-color: #fff;
             box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
         }
 
-        .sidebar-search {
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
             margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* Search and Browse */
+        .sidebar-search {
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 0 0.5rem;
+            padding: 0.25rem 0.75rem;
+            transition: var(--transition);
+        }
+
+        .sidebar-search:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(137, 24, 242, 0.2);
         }
 
         .sidebar-search input {
@@ -199,21 +327,34 @@
             outline: none;
             flex-grow: 1;
             padding: 0.5rem;
+            background: transparent;
+        }
+
+        .sidebar-search i {
+            color: var(--light-text);
         }
 
         .sidebar-browse {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
 
         .sidebar-browse a {
             text-decoration: none;
-            color: #8918f2;
+            color: var(--primary-color);
             font-weight: 500;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .sidebar-browse a:hover {
+            background-color: rgba(137, 24, 242, 0.1);
         }
 
         .sidebar-actions {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
 
         .sidebar-actions button {
@@ -223,47 +364,276 @@
             margin-bottom: 0.5rem;
             border: none;
             border-radius: 5px;
-            background-color: #f0f0f0;
+            background-color: var(--secondary-color);
             cursor: pointer;
             text-align: left;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .sidebar-actions button:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-bottom: 1.5rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-bar {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            .login-bar-left {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .login-bar input, .login-bar button, .login-bar a {
+                width: 100%;
+                margin: 0.25rem 0;
+            }
+            
+            .header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-container {
+                padding: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        /* Accessibility Improvements */
+        button, a, input[type="text"], input[type="email"] {
+            font-size: 1rem;
+        }
+        
+        button, a {
+            cursor: pointer;
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        input:focus {
+            outline: 2px solid var(--primary-color);
+        }
+        
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
     </style>
 </head>
 <body>
     <div class="login-bar">
         <div class="login-bar-left">
-            <img src="vit-logo.png" alt="VIT Logo">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="Registration Number">
+            <img src="vit-logo.png" alt="VIT University Logo">
+            <input type="email" placeholder="Email" aria-label="Email">
+            <input type="text" placeholder="Registration Number" aria-label="Registration Number">
             <button>Login</button>
             <a href="#">Forgotten account?</a>
         </div>
-        <button class="sell-button">Sell</button>
+        <button class="sell-button" aria-label="Sell an item">
+            <i class="fas fa-plus" aria-hidden="true"></i> Sell
+        </button>
     </div>
 
     <header class="header">
         <div class="logo">
-            VIT Marketplace
+            <img src="marketplace-logo.png" alt="VIT Marketplace Logo">
+            <span>VIT Marketplace</span>
         </div>
         <div class="user-actions">
-            <a href="#" style="text-decoration: none; color: #333;">Your Account</a>
+            <button class="sell-button">
+                <i class="fas fa-plus" aria-hidden="true"></i> Sell
+            </button>
+            <a href="#" class="profile-link" aria-label="Your account">
+                <img src="default-profile.jpg" alt="User profile" class="profile-pic">
+            </a>
         </div>
     </header>
 
     <main class="main-container">
         <aside class="sidebar">
             <div class="sidebar-search">
-                <input type="text" placeholder="Search...">
-                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search..." aria-label="Search marketplace">
+                <i class="fas fa-search" aria-hidden="true"></i>
             </div>
             <div class="sidebar-browse">
-                <a href="#">Browse All</a>
+                <a href="#"><i class="fas fa-compass" aria-hidden="true"></i> Browse All</a>
             </div>
             <h2>Categories</h2>
             <ul>
-                <li onclick="filterCategory('All')"><img src="all.png" alt="All">All</li>
-                <li onclick="filterCategory('Medicines')"><img src="medicine.jpg" alt="Medicines">Medicines</li>
-                <li onclick="filterCategory('Lab Coats')"><img src="labcoat.jpg" alt="Lab Coats">Lab Coats</li>
-                <li onclick="filterCategory('Bed & Mattresses')"><img src="bed.jpg" alt="Bed & Mattresses">Bed & Mattresses</li>
-                <li onclick="filterCategory('Midnight Cravings')"><img src="food.jpg" alt="Midnight Cravings">Midnight Cravings</li>
-                <li onclick="filterCategory('
+                <li class="active" onclick="filterCategory('All')">
+                    <img src="all.png" alt=""> All
+                </li>
+                <li onclick="filterCategory('Medicines')">
+                    <img src="medicine.jpg" alt=""> Medicines
+                </li>
+                <li onclick="filterCategory('Lab Coats')">
+                    <img src="labcoat.jpg" alt=""> Lab Coats
+                </li>
+                <li onclick="filterCategory('Bed & Mattresses')">
+                    <img src="bed.jpg" alt=""> Bed & Mattresses
+                </li>
+                <li onclick="filterCategory('Midnight Cravings')">
+                    <img src="food.jpg" alt=""> Midnight Cravings
+                </li>
+                <li onclick="filterCategory('Books')">
+                    <img src="books.jpg" alt=""> Books
+                </li>
+                <li onclick="filterCategory('Electronics')">
+                    <img src="electronics.jpg" alt=""> Electronics
+                </li>
+            </ul>
+            
+            <div class="sidebar-actions">
+                <button>
+                    <i class="fas fa-heart" aria-hidden="true"></i> Saved Items
+                </button>
+                <button>
+                    <i class="fas fa-bell" aria-hidden="true"></i> Notifications
+                </button>
+                <button>
+                    <i class="fas fa-question-circle" aria-hidden="true"></i> Help Center
+                </button>
+            </div>
+        </aside>
+
+        <section class="product-grid">
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="product1.jpg" alt="Organic Chemistry Textbook" class="product-image">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Organic Chemistry Textbook</h3>
+                    <div class="product-price">₹450</div>
+                    <div class="product-seller">John D. (Final Year)</div>
+                </div>
+            </article>
+            
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="product2.jpg" alt="Lab Coat - Size M" class="product-image">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Lab Coat - Size M</h3>
+                    <div class="product-price">₹350</div>
+                    <div class="product-seller">Sarah M. (Biotech)</div>
+                </div>
+            </article>
+            
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="product3.jpg" alt="Memory Foam Mattress" class="product-image">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Memory Foam Mattress</h3>
+                    <div class="product-price">₹1,200</div>
+                    <div class="product-seller">Rahul K. (Hostel 3)</div>
+                </div>
+            </article>
+            
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="product4.jpg" alt="Calculus Scientific Calculator" class="product-image">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Scientific Calculator</h3>
+                    <div class="product-price">₹600</div>
+                    <div class="product-seller">Priya T. (CSE)</div>
+                </div>
+            </article>
+            
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="product5.jpg" alt="Instant Noodles Pack" class="product-image">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Instant Noodles Pack (6)</h3>
+                    <div class="product-price">₹180</div>
+                    <div class="product-seller">Amit S. (Hostel 5)</div>
+                </div>
+            </article>
+            
+            <article class="product-card">
+                <div class="product-image-container">
+                    <img src="product6.jpg" alt="Basic Physics Textbook" class="product-image">
+                </div>
+                <div class="product-details">
+                    <h3 class="product-title">Basic Physics Textbook</h3>
+                    <div class="product-price">₹300</div>
+                    <div class="product-seller">Neha P. (Mechanical)</div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Help</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="copyright">
+            &copy; 2023 VIT Marketplace. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        function filterCategory(category) {
+            // In a real implementation, this would filter the products
+            console.log(`Filtering by: ${category}`);
+            
+            // Update active category in sidebar
+            document.querySelectorAll('.sidebar li').forEach(item => {
+                item.classList.remove('active');
+                if (item.textContent.includes(category)) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // Simple responsive menu toggle for mobile (would need more implementation)
+        function toggleMobileMenu() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('mobile-visible');
+        }
+    </script>
+</body>
+</html>
