@@ -1,0 +1,14 @@
+.navbar{
+    background-color: aqua;
+    color: black;
+}
+.nav-link{
+    color: black;
+
+}
+.main{
+    height: 2000px;
+    background-color: aquamarine;
+    width: 100%;
+
+}

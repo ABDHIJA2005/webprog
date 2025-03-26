@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VIT MARKETPLACE Terms & Conditions - Exclusive campus marketplace for VIT students">
+    <title>Terms & Conditions - VIT MARKETPLACE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #7e22ce;
+            --primary-hover: #6b21a8;
+            --secondary-color: #f3e8ff;
+            --text-color: #333;
+            --light-text: #666;
+            --border-color: #d8b4fe;
+            --card-shadow: 0 4px 8px rgba(126, 34, 206, 0.1);
+            --hover-shadow: 0 6px 12px rgba(126, 34, 206, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f3e7f9, #e3daf5);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .policy-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .policy-card:hover {
+            box-shadow: var(--hover-shadow);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .dark-blue-text {
+            color: #1e3a8a;
+        }
+
+        /* Accessibility Improvements */
+        button:focus, a:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .policy-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-purple-900 p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-purple-200 flex items-center">
+                <i class="fas fa-store mr-2"></i> VIT <span class="dark-blue-text">MARKETPLACE</span>
+            </a>
+            <button class="md:hidden text-white focus:outline-none" id="mobile-menu-button">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            <ul class="hidden md:flex space-x-6" id="nav-links">
+                <li><a href="index.html" class="text-purple-100 hover:text-purple-300 transition-colors">Shop</a></li>
+                <li><a href="TermsAndCondition.html" class="text-purple-100 font-semibold nav-link active">Terms</a></li>
+                <li><a href="PrivacyPolicy.html" class="text-purple-100 hover:text-purple-300 transition-colors">Privacy</a></li>
+                <li><a href="ContactUs.html" class="text-purple-100 hover:text-purple-300 transition-colors">Contact</a></li>
+                <li><a href="login.html" class="text-purple-100 hover:text-purple-300 transition-colors flex items-center">
+                    <i class="fas fa-user-circle mr-1"></i> Account
+                </a></li>
+            </ul>
+        </div>
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-purple-800 mt-2 py-2 rounded-lg" id="mobile-menu">
+            <a href="index.html" class="block px-4 py-2 text-white hover:bg-purple-700">Shop</a>
+            <a href="TermsAndCondition.html" class="block px-4 py-2 text-white bg-purple-700">Terms</a>
+            <a href="PrivacyPolicy.html" class="block px-4 py-2 text-white hover:bg-purple-700">Privacy</a>
+            <a href="ContactUs.html" class="block px-4 py-2 text-white hover:bg-purple-700">Contact</a>
+            <a href="login.html" class="block px-4 py-2 text-white hover:bg-purple-700">Account</a>
+        </div>
+    </nav>
+
+    <section class="container mx-auto p-6 max-w-4xl flex-grow">
+        <div class="policy-card p-8">
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold mb-2 text-purple-900">Terms & Conditions</h1>
+                <p class="text-purple-600">Last updated: March 2025</p>
+            </div>
+            
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-2xl font-semibold mb-3 section-title">1. Acceptance of Terms</h2>
+                    <p class="text-gray-700">By accessing VIT MARKETPLACE, you agree to these Terms. Only current VIT students with valid credentials may use this platform.</p>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold mb-3 section-title">2. Platform Services</h2>
+                    <div class="text-gray-700 space-y-3">
+                        <p>VIT MARKETPLACE provides an exclusive platform for VIT students to:</p>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>Buy and sell academic materials, books, and campus essentials</li>
+                            <li>Connect with other students for item exchanges</li>
+                            <li>List and find student services within campus guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold mb-3 section-title">3. Student Responsibilities</h2>
+                    <div class="text-gray-700 space-y-3">
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li><strong>VIT Credentials:</strong> Use only your official @vitstudent.ac.in email and valid registration number</li>
+                            <li><strong>Authentic Listings:</strong> Provide accurate descriptions of items or services</li>
+                            <li><strong>Campus Compliance:</strong> All transactions must comply with VIT policies</li>
+                            <li><strong>Safe Exchanges:</strong> Meet only at designated campus locations</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold mb-3 section-title">4. Transactions</h2>
+                    <div class="text-gray-700 space-y-3">
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>All prices should be in INR (₹)</li>
+                            <li>Payment methods are decided between buyer and seller</li>
+                            <li>VIT MARKETPLACE is not responsible for payment disputes</li>
+                            <li>Report any issues within 48 hours of transaction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold mb-3 section-title">5. Prohibited Items & Services</h2>
+                    <p class="text-gray-700">The following are strictly prohibited:</p>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Alcohol/Tobacco</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Weapons</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Illegal substances</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Plagiarized content</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Cheating services</span>
+                        <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm">Stolen property</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-2xl font-semibold mb-3 section-title">6. Account Termination</h2>
+                    <p class="text-gray-700">VIT MARKETPLACE reserves the right to suspend accounts for:</p>
+                    <ul class="list-disc pl-6 space-y-2 text-gray-700 mt-2">
+                        <li>Violation of VIT code of conduct</li>
+                        <li>Fraudulent activity</li>
+                        <li>Multiple complaints from other users</li>
+                        <li>Listing prohibited items</li>
+                    </ul>
+                </div>
+
+                <div class="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                    <h2 class="text-xl font-semibold mb-2 flex items-center text-purple-800">
+                        <i class="fas fa-info-circle mr-2"></i> Need Help?
+                    </h2>
+                    <p class="text-purple-700">For questions about these Terms, contact our campus support team.</p>
+                    <a href="ContactUs.html" class="inline-block mt-3 px-4 py-2 bg-purple-100 text-purple-800 rounded-lg hover:bg-purple-200 transition-colors">
+                        <i class="fas fa-envelope mr-1"></i> Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-purple-900 text-white py-8 mt-10">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4 text-purple-200">VIT <span class="dark-blue-text">MARKETPLACE</span></h3>
+                    <p class="text-purple-300">Exclusive marketplace for VIT students.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-purple-300 hover:text-white transition-colors">Shop</a></li>
+                        <li><a href="About.html" class="text-purple-300 hover:text-white transition-colors">About</a></li>
+                        <li><a href="ContactUs.html" class="text-purple-300 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="TermsAndCondition.html" class="text-purple-300 hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="PrivacyPolicy.html" class="text-purple-300 hover:text-white transition-colors">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-purple-300 hover:text-white transition-colors" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-purple-300 hover:text-white transition-colors" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="text-purple-300 hover:text-white transition-colors" aria-label="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-purple-800 mt-8 pt-6 text-center text-purple-300">
+                <p>&copy; 2024 VIT <span class="dark-blue-text">MARKETPLACE</span>. For VIT students only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
