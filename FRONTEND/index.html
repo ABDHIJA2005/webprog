@@ -52,6 +52,7 @@
 <body>
     <nav class="bg-purple-900 text-white p-4 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Lab Coats" class="w-16 h-16">
             <a href="index.html" class="text-xl font-bold text-purple-200">VIT MARKETPLACE</a>
             <button class="md:hidden focus:outline-none" id="menu-toggle">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -350,6 +351,80 @@
                 });
             }
         });
+    </script>
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('hidden');
+        });
+    
+        // Initialize cart from localStorage or create empty array
+        let cart = JSON.parse(localStorage.getItem('vit-cart')) || [];
+        const cartCountElement = document.getElementById('cart-count');
+        
+        // Update cart count display
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            totalItems > 0 ? cartCountElement.classList.remove('hidden') : cartCountElement.classList.add('hidden');
+            
+            // Save to localStorage
+            localStorage.setItem('vit-cart', JSON.stringify(cart));
+        }
+    
+        // Quantity buttons functionality
+        document.querySelectorAll('.quantity-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const quantityElement = this.parentElement.querySelector('.quantity');
+                let quantity = parseInt(quantityElement.textContent);
+                
+                if (this.textContent === '+' && quantity < 10) {
+                    quantity++;
+                } else if (this.textContent === '-' && quantity > 0) {
+                    quantity--;
+                }
+                
+                quantityElement.textContent = quantity;
+            });
+        });
+    
+        // Add to cart functionality
+        document.querySelectorAll('#best-sellers button').forEach(button => {
+            if (button.textContent.includes('Add to Cart')) {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('div');
+                    const product = {
+                        id: productCard.querySelector('h3').textContent.replace(/\s+/g, '-').toLowerCase(),
+                        name: productCard.querySelector('h3').textContent,
+                        price: parseFloat(productCard.querySelector('span.text-lg').textContent.replace('₹', '')),
+                        image: productCard.querySelector('img').src,
+                        quantity: parseInt(productCard.querySelector('.quantity').textContent)
+                    };
+                    
+                    if (product.quantity === 0) {
+                        alert('Please select at least 1 item');
+                        return;
+                    }
+                    
+                    // Check if item already exists in cart
+                    const existingItem = cart.find(item => item.id === product.id);
+                    
+                    if (existingItem) {
+                        existingItem.quantity += product.quantity;
+                    } else {
+                        cart.push(product);
+                    }
+                    
+                    updateCartCount();
+                    productCard.querySelector('.quantity').textContent = '0';
+                    alert(`${product.quantity} ${product.name} added to cart`);
+                });
+            }
+        });
+    
+        // Initialize cart count on page load
+        updateCartCount();
     </script>
 </body>
 </html>
