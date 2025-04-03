@@ -23,51 +23,108 @@
     </div>
 
     <script>
-        const cartItems = [
-            { name: "Product 1", price: 19.99, sellerId: "seller123" },
-            { name: "Product 2", price: 29.99, sellerId: "seller456" },
-        ];
-
+        // Fetch cart data from local storage or use an empty array
+        const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    
+        // Function to fetch product details from backend
+        async function fetchProducts() {
+            try {
+                const response = await fetch("http://localhost:5000/products");
+                const products = await response.json();
+    
+                // Match fetched products with cart items
+                cartItems.forEach(cartItem => {
+                    const product = products.find(p => p.id === cartItem.id);
+                    if (product) {
+                        cartItem.name = product.name;
+                        cartItem.price = product.price;
+                    }
+                });
+    
+                localStorage.setItem("cart", JSON.stringify(cartItems)); // Save updated details
+                renderCart();
+            } catch (error) {
+                console.error("Error fetching product data:", error);
+            }
+        }
+    
+        // Function to render cart items
         function renderCart() {
             const cartContainer = document.getElementById("cart");
             cartContainer.innerHTML = "";
-
+    
             if (cartItems.length === 0) {
                 cartContainer.innerHTML = "<p class='text-center text-purple-700'>Your cart is empty.</p>";
+                localStorage.removeItem("cart");
                 return;
             }
-
+    
             cartItems.forEach((item, index) => {
                 const itemElement = document.createElement("div");
                 itemElement.className = "flex justify-between items-center p-4 border border-purple-200 rounded-lg shadow-sm bg-white mb-2";
                 itemElement.innerHTML = `
                     <div>
                         <h2 class='text-lg font-semibold text-purple-900'>${item.name}</h2>
-                        <p class='text-purple-700'>$${item.price.toFixed(2)}</p>
+                        <p class='text-purple-700'>₹${item.price.toFixed(2)}</p>
+                        <div class="flex items-center mt-2">
+                            <button onclick="changeQuantity(${index}, -1)" class="bg-gray-300 px-2 rounded-l">-</button>
+                            <input type="text" value="${item.quantity}" class="w-12 text-center border border-gray-300" disabled />
+                            <button onclick="changeQuantity(${index}, 1)" class="bg-gray-300 px-2 rounded-r">+</button>
+                        </div>
                     </div>
                     <button onclick='removeItem(${index})' class='bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-lg'>Remove</button>
                 `;
                 cartContainer.appendChild(itemElement);
             });
+    
+            // Show total price
+            const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            cartContainer.innerHTML += `
+                <div class='text-right mt-4 text-lg font-bold text-purple-900'>Total: ₹${total.toFixed(2)}</div>
+            `;
         }
-
-        function removeItem(index) {
-            cartItems.splice(index, 1);
+    
+        // Function to update quantity
+        function changeQuantity(index, change) {
+            if (cartItems[index].quantity + change > 0) {
+                cartItems[index].quantity += change;
+            } else {
+                cartItems.splice(index, 1); // Remove item if quantity is 0
+            }
+    
+            localStorage.setItem("cart", JSON.stringify(cartItems)); // Save changes
             renderCart();
         }
-
+    
+        // Function to remove an item
+        function removeItem(index) {
+            cartItems.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cartItems));
+            renderCart();
+        }
+    
+        // Function to fetch seller details
         async function fetchSellerDetails() {
+            if (cartItems.length === 0) {
+                alert("Your cart is empty. Please add items before proceeding.");
+                return;
+            }
+    
             const sellerDetailsDiv = document.getElementById("sellerDetails");
-            sellerDetailsDiv.innerHTML = "<p class='text-purple-700'>Fetching seller details...</p>";
+            sellerDetailsDiv.innerHTML = `
+                <div class="flex justify-center">
+                    <div class="w-6 h-6 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            `;
             sellerDetailsDiv.classList.remove("hidden");
-
+    
             try {
                 const response = await fetch("http://localhost:5000/seller-details", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ items: cartItems }),
                 });
-
+    
                 const data = await response.json();
                 sellerDetailsDiv.innerHTML = data.map(seller => `
                     <div class="p-2 border border-purple-400 rounded-lg bg-white mb-2">
@@ -80,9 +137,15 @@
                 sellerDetailsDiv.innerHTML = "<p class='text-red-600'>Error fetching seller details.</p>";
             }
         }
-
+    
+        // Initialize page
+        document.addEventListener("DOMContentLoaded", () => {
+            fetchProducts();
+            renderCart();
+        });
+    
         document.getElementById("buyButton").addEventListener("click", fetchSellerDetails);
-        document.addEventListener("DOMContentLoaded", renderCart);
     </script>
+    
 </body>
 </html>
