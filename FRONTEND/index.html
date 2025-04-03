@@ -52,7 +52,6 @@
 <body>
     <nav class="bg-purple-900 text-white p-4 shadow-md">
         <div class="container mx-auto flex justify-between items-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Lab Coats" class="w-16 h-16">
             <a href="index.html" class="text-xl font-bold text-purple-200">VIT MARKETPLACE</a>
             <button class="md:hidden focus:outline-none" id="menu-toggle">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -89,62 +88,10 @@
         </div>
     </nav>
 
-    <div class="container mx-auto p-6">
-        <h2 class="text-2xl font-bold text-purple-900 mb-6 text-center">Shop by Category</h2>
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            <!-- Medicines -->
-            <a href="/medicines" class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center category-card">
-                <div class="flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="Medicines" class="w-16 h-16">
-                </div>
-                <span class="mt-2 block text-sm font-semibold text-purple-900">Medicines</span>
-            </a>
-
-            <!-- Midnight Cravings -->
-            <a href="/midnight-cravings" class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center category-card">
-                <div class="flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081985.png" alt="Midnight Cravings" class="w-16 h-16">
-                </div>
-                <span class="mt-2 block text-sm font-semibold text-purple-900">Midnight Cravings</span>
-            </a>
-
-            <!-- Lab Coats -->
-            <a href="/lab-coats" class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center category-card">
-                <div class="flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Lab Coats" class="w-16 h-16">
-                </div>
-                <span class="mt-2 block text-sm font-semibold text-purple-900">Lab Coats</span>
-            </a>
-
-            <!-- Bed & Mattresses -->
-            <a href="/bed-mattresses" class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center category-card">
-                <div class="flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1903/1903506.png" alt="Bed & Mattresses" class="w-16 h-16">
-                </div>
-                <span class="mt-2 block text-sm font-semibold text-purple-900">Bed & Mattresses</span>
-            </a>
-
-            <!-- Books -->
-            <a href="/books" class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center category-card">
-                <div class="flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2702/2702134.png" alt="Books" class="w-16 h-16">
-                </div>
-                <span class="mt-2 block text-sm font-semibold text-purple-900">Books</span>
-            </a>
-
-            <!-- Electronics -->
-            <a href="/electronics" class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center category-card">
-                <div class="flex justify-center">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3659/3659898.png" alt="Electronics" class="w-16 h-16">
-                </div>
-                <span class="mt-2 block text-sm font-semibold text-purple-900">Electronics</span>
-            </a>
-        </div>
-    </div>
 
     <section id="best-sellers" class="py-16 bg-purple-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-purple-900 text-center mb-6">Best Sellers</h2>
+            <h2 class="text-3xl font-bold text-purple-900 text-center mb-6">Shop</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
                 <!-- Medicine Example -->
                 <div class="p-6 shadow-md rounded-lg bg-white text-gray-900 transition-transform hover:scale-105">
@@ -199,51 +146,61 @@
                         Add to Cart
                     </button>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="new-arrivals" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-purple-900 text-center mb-6">New Arrivals</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            
                 <!-- Bed & Mattress Example -->
-                <div class="p-6 shadow-md rounded-lg bg-purple-50 text-gray-900 transition-transform hover:scale-105">
+
+                <div class="p-6 shadow-md rounded-lg bg-white text-gray-900 transition-transform hover:scale-105">
                     <img src="https://m.media-amazon.com/images/I/71p7+9t+YTL._AC_UL600_FMwebp_QL65_.jpg" alt="Mattress Topper" class="mx-auto h-48 object-contain rounded-t-lg">
                     <h3 class="text-xl font-semibold mt-4">Memory Foam Mattress Topper</h3>
                     <p class="text-gray-600">3-inch thickness for dorm room comfort.</p>
                     <div class="flex items-center justify-between mt-4">
-                        <span class="text-lg font-bold text-purple-900">₹2,499</span>
-                        <button class="px-4 py-2 purple-bg text-white rounded-lg hover:bg-purple-800 transition-colors">
-                            View Details
-                        </button>
+                        <span class="text-lg font-bold text-purple-900">₹899</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">-</button>
+                            <span class="quantity">0</span>
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">+</button>
+                        </div>
                     </div>
+                    <button class="w-full mt-4 purple-bg text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">
+                        Add to Cart
+                    </button>
                 </div>
+            
                 
                 <!-- Book Example -->
-                <div class="p-6 shadow-md rounded-lg bg-purple-50 text-gray-900 transition-transform hover:scale-105">
+                <div class="p-6 shadow-md rounded-lg bg-white text-gray-900 transition-transform hover:scale-105">
                     <img src="https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UL600_FMwebp_QL65_.jpg" alt="Textbook" class="mx-auto h-48 object-contain rounded-t-lg">
                     <h3 class="text-xl font-semibold mt-4">Engineering Mathematics (Sem 4)</h3>
                     <p class="text-gray-600">Latest edition with solved problems.</p>
                     <div class="flex items-center justify-between mt-4">
-                        <span class="text-lg font-bold text-purple-900">₹450</span>
-                        <button class="px-4 py-2 purple-bg text-white rounded-lg hover:bg-purple-800 transition-colors">
-                            View Details
-                        </button>
+                        <span class="text-lg font-bold text-purple-900">₹899</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">-</button>
+                            <span class="quantity">0</span>
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">+</button>
+                        </div>
                     </div>
+                    <button class="w-full mt-4 purple-bg text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">
+                        Add to Cart
+                    </button>
                 </div>
-                
+        
                 <!-- Electronics Example -->
-                <div class="p-6 shadow-md rounded-lg bg-purple-50 text-gray-900 transition-transform hover:scale-105">
+                <div class="p-6 shadow-md rounded-lg bg-white text-gray-900 transition-transform hover:scale-105">
                     <img src="https://m.media-amazon.com/images/I/61L1ItFgFHL._AC_UL600_FMwebp_QL65_.jpg" alt="Earphones" class="mx-auto h-48 object-contain rounded-t-lg">
                     <h3 class="text-xl font-semibold mt-4">Wireless Bluetooth Earphones</h3>
                     <p class="text-gray-600">20hrs playback with mic for online classes.</p>
                     <div class="flex items-center justify-between mt-4">
-                        <span class="text-lg font-bold text-purple-900">₹1,299</span>
-                        <button class="px-4 py-2 purple-bg text-white rounded-lg hover:bg-purple-800 transition-colors">
-                            View Details
-                        </button>
+                        <span class="text-lg font-bold text-purple-900">₹899</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">-</button>
+                            <span class="quantity">0</span>
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">+</button>
+                        </div>
                     </div>
+                    <button class="w-full mt-4 purple-bg text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
@@ -351,80 +308,6 @@
                 });
             }
         });
-    </script>
-    <script>
-        // Mobile menu toggle
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const navLinks = document.getElementById('nav-links');
-            navLinks.classList.toggle('hidden');
-        });
-    
-        // Initialize cart from localStorage or create empty array
-        let cart = JSON.parse(localStorage.getItem('vit-cart')) || [];
-        const cartCountElement = document.getElementById('cart-count');
-        
-        // Update cart count display
-        function updateCartCount() {
-            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            cartCountElement.textContent = totalItems;
-            totalItems > 0 ? cartCountElement.classList.remove('hidden') : cartCountElement.classList.add('hidden');
-            
-            // Save to localStorage
-            localStorage.setItem('vit-cart', JSON.stringify(cart));
-        }
-    
-        // Quantity buttons functionality
-        document.querySelectorAll('.quantity-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const quantityElement = this.parentElement.querySelector('.quantity');
-                let quantity = parseInt(quantityElement.textContent);
-                
-                if (this.textContent === '+' && quantity < 10) {
-                    quantity++;
-                } else if (this.textContent === '-' && quantity > 0) {
-                    quantity--;
-                }
-                
-                quantityElement.textContent = quantity;
-            });
-        });
-    
-        // Add to cart functionality
-        document.querySelectorAll('#best-sellers button').forEach(button => {
-            if (button.textContent.includes('Add to Cart')) {
-                button.addEventListener('click', function() {
-                    const productCard = this.closest('div');
-                    const product = {
-                        id: productCard.querySelector('h3').textContent.replace(/\s+/g, '-').toLowerCase(),
-                        name: productCard.querySelector('h3').textContent,
-                        price: parseFloat(productCard.querySelector('span.text-lg').textContent.replace('₹', '')),
-                        image: productCard.querySelector('img').src,
-                        quantity: parseInt(productCard.querySelector('.quantity').textContent)
-                    };
-                    
-                    if (product.quantity === 0) {
-                        alert('Please select at least 1 item');
-                        return;
-                    }
-                    
-                    // Check if item already exists in cart
-                    const existingItem = cart.find(item => item.id === product.id);
-                    
-                    if (existingItem) {
-                        existingItem.quantity += product.quantity;
-                    } else {
-                        cart.push(product);
-                    }
-                    
-                    updateCartCount();
-                    productCard.querySelector('.quantity').textContent = '0';
-                    alert(`${product.quantity} ${product.name} added to cart`);
-                });
-            }
-        });
-    
-        // Initialize cart count on page load
-        updateCartCount();
     </script>
 </body>
 </html>
