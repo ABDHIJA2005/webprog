@@ -3,158 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart - VIT MARKETPLACE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Shopping Cart</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Your existing styles here */
-        .cart-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(126, 34, 206, 0.15);
+        body {
+            background: linear-gradient(135deg, #f3e7f9, #e3daf5);
         }
     </style>
 </head>
-<body>
-    <!-- Your existing navigation -->
-
-    <section class="container mx-auto p-6 max-w-6xl">
-        <h1 class="text-3xl font-bold mb-8 text-purple-900">Your Shopping Cart</h1>
-        
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="md:col-span-2">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <div id="cart-items" class="space-y-4">
-                        <!-- Cart items will be dynamically inserted here -->
-                        <div class="text-center py-10">
-                            <i class="fas fa-shopping-cart text-4xl text-purple-200 mb-4"></i>
-                            <p class="text-purple-600">Your cart is empty</p>
-                            <a href="index.html" class="inline-block mt-4 px-6 py-2 purple-bg text-white rounded-lg hover:bg-purple-800 transition-colors">
-                                Continue Shopping
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div>
-                <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
-                    <h2 class="text-xl font-semibold mb-4 text-purple-800">Order Summary</h2>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex justify-between">
-                            <span>Subtotal</span>
-                            <span id="subtotal">₹0</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span>Delivery</span>
-                            <span>FREE</span>
-                        </div>
-                        <div class="border-t border-gray-200 pt-3 flex justify-between font-semibold text-lg">
-                            <span>Total</span>
-                            <span id="total">₹0</span>
-                        </div>
-                    </div>
-                    <button id="checkout-btn" class="w-full purple-bg text-white py-3 rounded-lg hover:bg-purple-800 transition-colors disabled:opacity-50" disabled>
-                        Proceed to Checkout
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl border border-purple-200">
+        <h1 class="text-2xl font-bold text-purple-900 text-center mb-4">Shopping Cart</h1>
+        <div id="cart"></div>
+    </div>
 
     <script>
-        // Cart functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const cart = JSON.parse(localStorage.getItem('vit-cart')) || [];
-            const cartItemsContainer = document.getElementById('cart-items');
-            const subtotalElement = document.getElementById('subtotal');
-            const totalElement = document.getElementById('total');
-            const checkoutBtn = document.getElementById('checkout-btn');
-            
-            function renderCart() {
-                if (cart.length === 0) {
-                    cartItemsContainer.innerHTML = `
-                        <div class="text-center py-10">
-                            <i class="fas fa-shopping-cart text-4xl text-purple-200 mb-4"></i>
-                            <p class="text-purple-600">Your cart is empty</p>
-                            <a href="index.html" class="inline-block mt-4 px-6 py-2 purple-bg text-white rounded-lg hover:bg-purple-800 transition-colors">
-                                Continue Shopping
-                            </a>
-                        </div>
-                    `;
-                    checkoutBtn.disabled = true;
-                    subtotalElement.textContent = '₹0';
-                    totalElement.textContent = '₹0';
-                    return;
-                }
-                
-                cartItemsContainer.innerHTML = cart.map(item => `
-                    <div class="cart-item flex items-start border-b border-gray-100 pb-4 transition-all">
-                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-contain rounded-lg">
-                        <div class="ml-4 flex-grow">
-                            <h3 class="font-medium">${item.name}</h3>
-                            <p class="text-sm text-purple-600">₹${item.price}</p>
-                            <div class="flex items-center mt-2">
-                                <button class="quantity-btn decrease border border-gray-200 px-2 py-1 rounded-l" data-id="${item.id}">-</button>
-                                <span class="quantity border-t border-b border-gray-200 px-3 py-1">${item.quantity}</span>
-                                <button class="quantity-btn increase border border-gray-200 px-2 py-1 rounded-r" data-id="${item.id}">+</button>
-                                <button class="remove-btn ml-auto text-red-500 hover:text-red-700" data-id="${item.id}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
+        const cartItems = [
+            { name: "Product 1", price: 19.99 },
+            { name: "Product 2", price: 29.99 },
+        ];
+
+        function renderCart() {
+            const cartContainer = document.getElementById("cart");
+            cartContainer.innerHTML = "";
+
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = "<p class='text-center text-purple-700'>Your cart is empty.</p>";
+                return;
+            }
+
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement("div");
+                itemElement.className = "flex justify-between items-center p-4 border border-purple-200 rounded-lg shadow-sm bg-white mb-2";
+                itemElement.innerHTML = `
+                    <div>
+                        <h2 class='text-lg font-semibold text-purple-900'>${item.name}</h2>
+                        <p class='text-purple-700'>$${item.price.toFixed(2)}</p>
                     </div>
-                `).join('');
-                
-                updateTotals();
-                checkoutBtn.disabled = false;
-            }
-            
-            function updateTotals() {
-                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                subtotalElement.textContent = `₹${subtotal}`;
-                totalElement.textContent = `₹${subtotal}`;
-                updateCartCount();
-            }
-            
-            function updateCartCount() {
-                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-                const cartCount = document.getElementById('cart-count');
-                cartCount.textContent = count;
-                count > 0 ? cartCount.classList.remove('hidden') : cartCount.classList.add('hidden');
-            }
-            
-            // Event delegation for quantity buttons
-            cartItemsContainer.addEventListener('click', function(e) {
-                if (e.target.classList.contains('increase')) {
-                    const id = e.target.dataset.id;
-                    const item = cart.find(item => item.id === id);
-                    if (item) {
-                        item.quantity++;
-                        localStorage.setItem('vit-cart', JSON.stringify(cart));
-                        renderCart();
-                    }
-                } else if (e.target.classList.contains('decrease')) {
-                    const id = e.target.dataset.id;
-                    const item = cart.find(item => item.id === id);
-                    if (item && item.quantity > 1) {
-                        item.quantity--;
-                        localStorage.setItem('vit-cart', JSON.stringify(cart));
-                        renderCart();
-                    }
-                } else if (e.target.classList.contains('remove-btn') || e.target.closest('.remove-btn')) {
-                    const btn = e.target.classList.contains('remove-btn') ? e.target : e.target.closest('.remove-btn');
-                    const id = btn.dataset.id;
-                    const index = cart.findIndex(item => item.id === id);
-                    if (index !== -1) {
-                        cart.splice(index, 1);
-                        localStorage.setItem('vit-cart', JSON.stringify(cart));
-                        renderCart();
-                    }
-                }
+                    <button onclick='removeItem(${index})' class='bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-lg'>Remove</button>
+                `;
+                cartContainer.appendChild(itemElement);
             });
-            
+        }
+
+        function removeItem(index) {
+            cartItems.splice(index, 1);
             renderCart();
-        });
+        }
+
+        document.addEventListener("DOMContentLoaded", renderCart);
     </script>
 </body>
 </html>
