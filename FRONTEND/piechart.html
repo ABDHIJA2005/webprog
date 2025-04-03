@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel Items Pie Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .chart-container {
+            width: 80%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            color: #6a0dad;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>VIT MARKETPLACE: Buying vs Selling Statistics</h2>
+    <div class="chart-container">
+        <canvas id="marketplaceChart"></canvas>
+    </div>
+    <script>
+        var ctx = document.getElementById('marketplaceChart').getContext('2d');
+        var marketplaceChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Students Selling', 'Students Buying'],
+                datasets: [{
+                    data: [60, 40], // Example percentages
+                    backgroundColor: ['#ff9999', '#66b3ff'],
+                    borderColor: ['#ffffff', '#ffffff'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
