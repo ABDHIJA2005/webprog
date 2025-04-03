@@ -13,15 +13,19 @@
 </head>
 <body class="flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl border border-purple-200 relative">
-        <a href="index.html" class="absolute top-4 left-4 bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-lg">← Back to Shop</a>
+        <a href="shop.html" class="absolute top-4 left-4 bg-purple-700 hover:bg-purple-800 text-white py-2 px-4 rounded-lg">← Back to Shop</a>
         <h1 class="text-2xl font-bold text-purple-900 text-center mb-4">Shopping Cart</h1>
         <div id="cart"></div>
+        
+        <button id="buyButton" class="w-full mt-4 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition-colors">Buy</button>
+        
+        <div id="sellerDetails" class="mt-4 hidden bg-purple-100 p-4 rounded-lg"></div>
     </div>
 
     <script>
         const cartItems = [
-            { name: "Product 1", price: 19.99 },
-            { name: "Product 2", price: 29.99 },
+            { name: "Product 1", price: 19.99, sellerId: "seller123" },
+            { name: "Product 2", price: 29.99, sellerId: "seller456" },
         ];
 
         function renderCart() {
@@ -52,6 +56,32 @@
             renderCart();
         }
 
+        async function fetchSellerDetails() {
+            const sellerDetailsDiv = document.getElementById("sellerDetails");
+            sellerDetailsDiv.innerHTML = "<p class='text-purple-700'>Fetching seller details...</p>";
+            sellerDetailsDiv.classList.remove("hidden");
+
+            try {
+                const response = await fetch("http://localhost:5000/seller-details", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ items: cartItems }),
+                });
+
+                const data = await response.json();
+                sellerDetailsDiv.innerHTML = data.map(seller => `
+                    <div class="p-2 border border-purple-400 rounded-lg bg-white mb-2">
+                        <h2 class='font-semibold text-purple-900'>${seller.name}</h2>
+                        <p class='text-purple-700'>Contact: ${seller.contact}</p>
+                        <p class='text-purple-700'>Location: ${seller.location}</p>
+                    </div>
+                `).join("");
+            } catch (error) {
+                sellerDetailsDiv.innerHTML = "<p class='text-red-600'>Error fetching seller details.</p>";
+            }
+        }
+
+        document.getElementById("buyButton").addEventListener("click", fetchSellerDetails);
         document.addEventListener("DOMContentLoaded", renderCart);
     </script>
 </body>
