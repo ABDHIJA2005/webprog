@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import mongoose from "mongoose";
 import cors from "cors";
 import authRoutes from "./route/authRoutes.js";
+import cartRoutes from "./route/cartRoutes.js"; // Import cart routes
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(cors({
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/cart", cartRoutes);  // Add cart routes
 
 try {
     mongoose.connect(URI,{
