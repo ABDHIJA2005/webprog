@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import authRoutes from "./route/authRoutes.js";
 import cartRoutes from "./route/cartRoutes.js"; // Import cart routes
+import productRoutes from "./route/productRoutes.js";
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(cors({
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/cart", cartRoutes);  // Add cart routes
+app.use("/api/product", productRoutes)
 
 try {
     mongoose.connect(URI,{

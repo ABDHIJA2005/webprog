@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT MARKETPLACE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #e9d5ff, #d8b4fe);
+        }
+        .purple-bg {
+            background-color: #7e22ce;
+        }
+        .purple-bg:hover {
+            background-color: #6b21a8;
+        }
+        .btn {
+            height: 40px;
+            width: 200px;
+            margin: 0 auto;
+            box-shadow: 0px 0px 10px rgba(216, 180, 254, 0.5);
+            border-radius: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn button {
+            font-size: 14px;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            cursor: pointer;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        .btn button:hover {
+            color: #a855f7;
+            background-color: rgba(168, 85, 247, 0.1);
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(126, 34, 206, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-purple-900 text-white p-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-purple-200">VIT MARKETPLACE</a>
+            <button class="md:hidden focus:outline-none" id="menu-toggle">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+            <ul class="hidden md:flex space-x-6 items-center" id="nav-links">
+                <li>
+                    <form action="/s/" method="GET" class="flex items-center">
+                        <input type="text" name="q" placeholder="Search..." class="bg-purple-800 text-white px-3 py-1 rounded focus:outline-none focus:ring-2 focus:ring-purple-500" />
+                        <button type="submit" class="ml-2 hover:text-purple-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <div class="btn">
+                        <button class="login active"><a href="login.html">Login</a></button>
+                        <button class="signup"><a href="SignUp.html">Signup</a></button>
+                    </div>
+                </li>
+                <li>
+                    <a href="cart.html" class="hover:text-purple-300 flex items-center relative">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                        <span class="ml-1">Cart</span>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                </li>
+                <li>
+                     <a href="submit.html" class="hover:text-purple-300 flex items-center relative">
+                         <span class="ml-1">Submit</span>
+                     </a>
+                     
+                 </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <section id="best-sellers" class="py-16 bg-purple-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-purple-900 text-center mb-6">Shops</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                <!-- Medicine Example -->
+                <div class="p-6 shadow-md rounded-lg bg-white text-gray-900 transition-transform hover:scale-105">
+                    <img src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2022/07/medications_fever_GettyImages155141637_Header-1024x575.jpg" alt="Dolo 650" class="mx-auto h-48 object-contain rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Dolo 650 (Pack of 10)</h3>
+                    <p class="text-gray-600">Effective fever and pain relief tablets.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-lg font-bold text-purple-900">₹25</span>
+                        <div class="flex items-center space-x-2"> 
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">-</button>
+                            <span class="quantity">0</span>
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">+</button>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 purple-bg text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+                
+                <!-- Midnight Cravings Example -->
+                <div class="p-6 shadow-md rounded-lg bg-white text-gray-900 transition-transform hover:scale-105">
+                    <img src="https://www.mynestle.in/media/catalog/product/m/a/maggi_masala_12_pack_pdp2.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=600&width=600&canvas=600:600" alt="Instant Noodles" class="mx-auto h-48 object-contain rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Maggi Instant Noodles (Pack of 12)</h3>
+                    <p class="text-gray-600">Ready in 2 minutes - perfect for late night hunger.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-lg font-bold text-purple-900">₹180</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">-</button>
+                            <span class="quantity">0</span>
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">+</button>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 purple-bg text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+                
+                <!-- Lab Coat Example -->
+                <div class="p-6 shadow-md rounded-lg bg-white text-gray-900 transition-transform hover:scale-105">
+                    <img src="https://2.imimg.com/data2/OC/AM/MY-1629548/lab-coat-250x250.jpg" alt="Lab Coat" class="mx-auto h-48 object-contain rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Premium White Lab Coat</h3>
+                    <p class="text-gray-600">100% cotton lab coat with VIT logo patch.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-lg font-bold text-purple-900">₹899</span>
+                        <div class="flex items-center space-x-2">
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">-</button>
+                            <span class="quantity">0</span>
+                            <button class="quantity-btn bg-gray-200 px-2 py-1 rounded hover:bg-gray-300">+</button>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 purple-bg text-white py-2 rounded-lg hover:bg-purple-800 transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="new-arrivals" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-purple-900 text-center mb-6">New Arrivals</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                <!-- Bed & Mattress Example -->
+                <div class="p-6 shadow-md rounded-lg bg-purple-50 text-gray-900 transition-transform hover:scale-105">
+                    <img src="https://myarmor.in/cdn/shop/files/MemoryFoamMattressTopper-SingleSize_72x36_1_6a73903f-4bb8-44e9-9246-678ce8b9ab5b.webp?v=1731954073&width=720" alt="Mattress Topper" class="mx-auto h-48 object-contain rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Memory Foam Mattress Topper</h3>
+                    <p class="text-gray-600">3-inch thickness for dorm room comfort.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-lg font-bold text-purple-900">₹2,499</span>
+                        <button class="px-4 py-2 purple-bg text-white rounded-lg hover:bg-purple-800 transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Book Example -->
+                <div class="p-6 shadow-md rounded-lg bg-purple-50 text-gray-900 transition-transform hover:scale-105">
+                    <img src="https://santrapub.com/cdn/shop/products/SPPL_34_Front.jpg?v=1619501626" alt="Textbook" class="mx-auto h-48 object-contain rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Engineering Mathematics (Sem 4)</h3>
+                    <p class="text-gray-600">Latest edition with solved problems.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-lg font-bold text-purple-900">₹450</span>
+                        <button class="px-4 py-2 purple-bg text-white rounded-lg hover:bg-purple-800 transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Electronics Example -->
+                <div class="p-6 shadow-md rounded-lg bg-purple-50 text-gray-900 transition-transform hover:scale-105">
+                    <img src="https://images.meesho.com/images/products/437287305/dffka_512.webp" alt="Earphones" class="mx-auto h-48 object-contain rounded-t-lg">
+                    <h3 class="text-xl font-semibold mt-4">Wireless Bluetooth Earphones</h3>
+                    <p class="text-gray-600">20hrs playback with mic for online classes.</p>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-lg font-bold text-purple-900">₹1,299</span>
+                        <button class="px-4 py-2 purple-bg text-white rounded-lg hover:bg-purple-800 transition-colors">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-purple-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="PrivacyPolicy.html" class="text-purple-200 hover:text-white transition-colors">Privacy Policy</a>
+                <a href="TermsAndCondition.html" class="text-purple-200 hover:text-white transition-colors">Terms of Service</a>
+                <a href="ContactUs.html" class="text-purple-200 hover:text-white transition-colors">Contact</a>
+                <a href="About.html" class="text-purple-200 hover:text-white transition-colors">About Us</a>
+            </div>
+            <div class="flex flex-col items-center">
+                <div class="flex space-x-5 mb-4">
+                    <a href="#" class="text-purple-200 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-purple-200 hover:text-white transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-purple-200 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="#" class="text-purple-200 hover:text-white transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+                <p class="text-purple-200 text-sm">
+                    &copy; VIT MARKETPLACE 2025. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const cartCountElement = document.getElementById('cart-count');
+    
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountElement.textContent = totalItems;
+            cartCountElement.classList.toggle('hidden', totalItems === 0);
+        }
+    
+        document.querySelectorAll('.quantity-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const quantityElement = this.parentElement.querySelector('.quantity');
+                let quantity = parseInt(quantityElement.textContent);
+                if (this.textContent === '+' && quantity < 10) {
+                    quantity++;
+                } else if (this.textContent === '-' && quantity > 0) {
+                    quantity--;
+                }
+                quantityElement.textContent = quantity;
+            });
+        });
+    
+        document.querySelectorAll('#best-sellers button').forEach(button => {
+            if (button.textContent.includes('Add to Cart')) {
+                button.addEventListener('click', function() {
+                    const product = this.closest('div');
+                    const productName = product.querySelector('h3').textContent;
+                    const quantity = parseInt(product.querySelector('.quantity').textContent);
+                    const priceText = product.querySelector('span.text-lg').textContent;
+                    const price = parseFloat(priceText.replace('₹', ''));
+                    const imageSrc = product.querySelector('img').src;
+    
+                    if (quantity === 0) {
+                        alert('Please select at least 1 item');
+                        return;
+                    }
+    
+                    const existingItemIndex = cart.findIndex(item => item.name === productName);
+                    if (existingItemIndex !== -1) {
+                        cart[existingItemIndex].quantity += quantity;
+                    } else {
+                        cart.push({ name: productName, quantity, price, image: imageSrc });
+                    }
+    
+                    localStorage.setItem("cart", JSON.stringify(cart));
+                    updateCartCount();
+                    product.querySelector('.quantity').textContent = '0';
+                    alert(`${quantity} ${productName} added to cart`);
+                });
+            }
+        });
+    
+        updateCartCount();
+    </script>
+</body>
+</html>
